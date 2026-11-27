@@ -51,6 +51,19 @@ function errorHandler(err, req, res, next) {
     });
   }
 
+  // Handle Prisma Database Connection / Initialization Errors
+  if (
+    err.name === 'PrismaClientInitializationError' ||
+    (err.message && err.message.includes("Can't reach database server"))
+  ) {
+    return res.status(503).json({
+      error: {
+        code: 'DATABASE_UNAVAILABLE',
+        message: 'Cannot reach PostgreSQL database server. Please ensure PostgreSQL is running and DATABASE_URL in backend/.env is configured.',
+      },
+    });
+  }
+
   // 4. Log unexpected internal errors and return 500
   console.error('[ReturnDesk Server Error]:', err);
 
