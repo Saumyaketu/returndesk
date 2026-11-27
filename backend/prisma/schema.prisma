@@ -1,0 +1,84 @@
+// Prisma Schema for ReturnDesk
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ----------------------------------------------------
+// Enums
+// ----------------------------------------------------
+
+enum ReturnReason {
+  DAMAGED
+  WRONG_ITEM
+  SIZE_ISSUE
+  NOT_AS_DESCRIBED
+  CHANGED_MIND
+}
+
+enum RequestStatus {
+  OPEN
+  IN_REVIEW
+  APPROVED
+  REJECTED
+  COMPLETED
+}
+
+enum ResolutionType {
+  REFUND
+  REPLACEMENT
+  STORE_CREDIT
+}
+
+// ----------------------------------------------------
+// Models
+// ----------------------------------------------------
+
+model ReturnRequest {
+  id              String          @id @default(uuid())
+  reference       String          @unique // System-generated human-readable reference, e.g. RET-202611-ABCDE
+  customerName    String
+  customerEmail   String
+  customerPhone   String?
+  orderId         String
+  itemId          String
+  itemQuantity    Int             @default(1)
+  reason          ReturnReason
+  status          RequestStatus   @default(OPEN)
+  resolution      ResolutionType?
+  refundAmount    Decimal?        @db.Decimal(10, 2)
+  isRemoved       Boolean         @default(false) // Rule 5: Non-destructive removal / soft delete
+  removedAt       DateTime?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  notes           Note[]
+
+  @@index([status])
+  @@index([reason])
+  @@index([orderId])
+  @@index([customerEmail])
+  @@index([customerName])
+  @@index([isRemoved])
+  @@index([createdAt])
+  @@index([orderId, itemId])
+  @@map("return_requests")
+}
+
+model Note {
+  id          String        @id @default(uuid())
+  requestId   String
+  author      String        @default("Support Agent")
+  content     String        @db.Text
+  createdAt   DateTime      @default(now())
+
+  request     ReturnRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  @@index([requestId, createdAt])
+  @@map("notes")
+}
