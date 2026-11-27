@@ -6,6 +6,7 @@ import FilterBar from '../components/FilterBar';
 import RequestTable from '../components/RequestTable';
 import Pagination from '../components/Pagination';
 import RequestDetailModal from '../components/RequestDetailModal';
+import StatusTransitionModal from '../components/StatusTransitionModal';
 import { useRequests } from '../hooks/useRequests';
 import { useToast } from '../context/ToastContext';
 
@@ -33,6 +34,7 @@ export default function Home() {
 
   const { showInfo } = useToast();
   const [activeRequestId, setActiveRequestId] = useState(null);
+  const [transitioningRequest, setTransitioningRequest] = useState(null);
 
   const handleSelectRequest = (request) => {
     setActiveRequestId(request.id);
@@ -43,10 +45,16 @@ export default function Home() {
   };
 
   const handleOpenTransition = (request) => {
-    showInfo(
-      `Status transition dialog for ${request.reference} will open here (Part 9).`,
-      'Status Transition'
-    );
+    setTransitioningRequest(request);
+  };
+
+  const handleTransitionSuccess = (updatedRequest) => {
+    refetch();
+    // If the detail drawer is open for this request, refresh it as well
+    if (activeRequestId === updatedRequest.id) {
+      setActiveRequestId(null);
+      setTimeout(() => setActiveRequestId(updatedRequest.id), 50);
+    }
   };
 
   return (
@@ -113,6 +121,14 @@ export default function Home() {
           setActiveRequestId(null);
         }}
         onOpenTransition={handleOpenTransition}
+      />
+
+      {/* Status Transition Modal (Rule 1 & Rule 2 Lifecycle State Machine) */}
+      <StatusTransitionModal
+        request={transitioningRequest}
+        isOpen={Boolean(transitioningRequest)}
+        onClose={() => setTransitioningRequest(null)}
+        onSuccess={handleTransitionSuccess}
       />
     </div>
   );
