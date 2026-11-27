@@ -6,11 +6,15 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "test": "node tests/businessRules.test.js && node tests/apiRoutes.test.js",
+    "test": "node tests/businessRules.test.js && node tests/apiRoutes.test.js && node tests/seedCompliance.test.js",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
+    "db:seed": "node prisma/seed.js",
     "db:studio": "prisma studio"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",
