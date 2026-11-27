@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import FilterBar from '../components/FilterBar';
 import RequestTable from '../components/RequestTable';
 import Pagination from '../components/Pagination';
+import RequestDetailModal from '../components/RequestDetailModal';
 import { useRequests } from '../hooks/useRequests';
 import { useToast } from '../context/ToastContext';
 
@@ -31,15 +32,21 @@ export default function Home() {
   } = useRequests(10);
 
   const { showInfo } = useToast();
-  const [selectedRequest, setSelectedRequest] = useState(null);
+  const [activeRequestId, setActiveRequestId] = useState(null);
 
   const handleSelectRequest = (request) => {
-    setSelectedRequest(request);
-    showInfo(`Opening return request ${request.reference}...`, 'Request Selected');
+    setActiveRequestId(request.id);
   };
 
   const handleNewRequest = () => {
     showInfo('The New Return Request modal will open here (Part 10).', 'Raise Request');
+  };
+
+  const handleOpenTransition = (request) => {
+    showInfo(
+      `Status transition dialog for ${request.reference} will open here (Part 9).`,
+      'Status Transition'
+    );
   };
 
   return (
@@ -94,6 +101,19 @@ export default function Home() {
           onLimitChange={setLimit}
         />
       </main>
+
+      {/* Request Detail Drawer / Modal (Working a request) */}
+      <RequestDetailModal
+        requestId={activeRequestId}
+        isOpen={Boolean(activeRequestId)}
+        onClose={() => setActiveRequestId(null)}
+        onRequestUpdated={refetch}
+        onRequestRemoved={() => {
+          refetch();
+          setActiveRequestId(null);
+        }}
+        onOpenTransition={handleOpenTransition}
+      />
     </div>
   );
 }
