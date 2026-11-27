@@ -7,8 +7,8 @@ import RequestTable from '../components/RequestTable';
 import Pagination from '../components/Pagination';
 import RequestDetailModal from '../components/RequestDetailModal';
 import StatusTransitionModal from '../components/StatusTransitionModal';
+import CreateRequestModal from '../components/CreateRequestModal';
 import { useRequests } from '../hooks/useRequests';
-import { useToast } from '../context/ToastContext';
 
 export default function Home() {
   const {
@@ -32,16 +32,12 @@ export default function Home() {
     refetch,
   } = useRequests(10);
 
-  const { showInfo } = useToast();
   const [activeRequestId, setActiveRequestId] = useState(null);
   const [transitioningRequest, setTransitioningRequest] = useState(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const handleSelectRequest = (request) => {
     setActiveRequestId(request.id);
-  };
-
-  const handleNewRequest = () => {
-    showInfo('The New Return Request modal will open here (Part 10).', 'Raise Request');
   };
 
   const handleOpenTransition = (request) => {
@@ -50,17 +46,21 @@ export default function Home() {
 
   const handleTransitionSuccess = (updatedRequest) => {
     refetch();
-    // If the detail drawer is open for this request, refresh it as well
     if (activeRequestId === updatedRequest.id) {
       setActiveRequestId(null);
       setTimeout(() => setActiveRequestId(updatedRequest.id), 50);
     }
   };
 
+  const handleCreateSuccess = (createdRequest) => {
+    refetch();
+    setActiveRequestId(createdRequest.id);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
       {/* Top Navigation */}
-      <Navbar onNewRequest={handleNewRequest} />
+      <Navbar onNewRequest={() => setIsCreateModalOpen(true)} />
 
       {/* Main Operations Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -129,6 +129,13 @@ export default function Home() {
         isOpen={Boolean(transitioningRequest)}
         onClose={() => setTransitioningRequest(null)}
         onSuccess={handleTransitionSuccess}
+      />
+
+      {/* Raise Return Request Modal (Rule 3 Duplicate Check & Auto-Reference) */}
+      <CreateRequestModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSuccess={handleCreateSuccess}
       />
     </div>
   );
