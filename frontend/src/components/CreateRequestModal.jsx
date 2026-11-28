@@ -189,7 +189,7 @@ export default function CreateRequestModal({ isOpen, onClose, onSuccess }) {
                   placeholder="e.g. Rohan Mehta"
                   value={formData.customerName}
                   onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
-                  className="w-full text-xs p-2.5 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-hidden"
+                  className="w-full text-xs p-2.5 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-slate-900"
                 />
               </div>
 
@@ -207,7 +207,7 @@ export default function CreateRequestModal({ isOpen, onClose, onSuccess }) {
                     placeholder="customer@example.com"
                     value={formData.customerEmail}
                     onChange={(e) => setFormData({ ...formData, customerEmail: e.target.value })}
-                    className="w-full pl-8 pr-2.5 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-hidden"
+                    className="w-full pl-8 pr-2.5 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-slate-900"
                   />
                 </div>
               </div>
@@ -225,7 +225,7 @@ export default function CreateRequestModal({ isOpen, onClose, onSuccess }) {
                     placeholder="+91-9876543210"
                     value={formData.customerPhone}
                     onChange={(e) => setFormData({ ...formData, customerPhone: e.target.value })}
-                    className="w-full pl-8 pr-2.5 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-hidden"
+                    className="w-full pl-8 pr-2.5 py-2 text-xs bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-slate-900"
                   />
                 </div>
               </div>
@@ -250,7 +250,7 @@ export default function CreateRequestModal({ isOpen, onClose, onSuccess }) {
                   placeholder="e.g. ORD-2026-8801"
                   value={formData.orderId}
                   onChange={(e) => setFormData({ ...formData, orderId: e.target.value })}
-                  className="w-full text-xs p-2.5 bg-white border border-slate-300 rounded-lg font-mono focus:ring-2 focus:ring-indigo-500 focus:outline-hidden"
+                  className="w-full text-xs p-2.5 bg-white border border-slate-300 rounded-lg font-mono focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-slate-900"
                 />
               </div>
 
@@ -264,7 +264,7 @@ export default function CreateRequestModal({ isOpen, onClose, onSuccess }) {
                   required
                   value={formData.itemQuantity}
                   onChange={(e) => setFormData({ ...formData, itemQuantity: e.target.value })}
-                  className="w-full text-xs p-2.5 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-hidden"
+                  className="w-full text-xs p-2.5 bg-white border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-slate-900"
                 />
               </div>
 
@@ -278,7 +278,7 @@ export default function CreateRequestModal({ isOpen, onClose, onSuccess }) {
                   placeholder="e.g. ITEM-ORTHO-SEAT-01"
                   value={formData.itemId}
                   onChange={(e) => setFormData({ ...formData, itemId: e.target.value })}
-                  className="w-full text-xs p-2.5 bg-white border border-slate-300 rounded-lg font-mono focus:ring-2 focus:ring-indigo-500 focus:outline-hidden"
+                  className="w-full text-xs p-2.5 bg-white border border-slate-300 rounded-lg font-mono focus:ring-2 focus:ring-indigo-500 focus:outline-hidden text-slate-900"
                 />
               </div>
             </div>
@@ -321,7 +321,7 @@ export default function CreateRequestModal({ isOpen, onClose, onSuccess }) {
               value={formData.initialNote}
               onChange={(e) => setFormData({ ...formData, initialNote: e.target.value })}
               placeholder="Record any details provided by the customer during initial inquiry..."
-              className="w-full text-xs p-2.5 bg-white border border-slate-300 rounded-lg placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
+              className="w-full text-xs p-2.5 bg-white border border-slate-300 rounded-lg placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 text-slate-900"
             />
           </div>
 

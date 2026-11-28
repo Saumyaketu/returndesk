@@ -315,7 +315,7 @@ export default function RequestDetailModal({
                             setFormData({ ...formData, customerName: e.target.value })
                           }
                           required
-                          className="w-full text-xs p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500"
+                          className="w-full text-xs p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 text-slate-900"
                         />
                       </div>
                       <div>
@@ -329,7 +329,7 @@ export default function RequestDetailModal({
                             setFormData({ ...formData, customerEmail: e.target.value })
                           }
                           required
-                          className="w-full text-xs p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500"
+                          className="w-full text-xs p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 text-slate-900"
                         />
                       </div>
                       <div>
@@ -342,7 +342,7 @@ export default function RequestDetailModal({
                           onChange={(e) =>
                             setFormData({ ...formData, customerPhone: e.target.value })
                           }
-                          className="w-full text-xs p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500"
+                          className="w-full text-xs p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 text-slate-900"
                         />
                       </div>
                       <div>
@@ -357,7 +357,7 @@ export default function RequestDetailModal({
                             setFormData({ ...formData, itemQuantity: e.target.value })
                           }
                           required
-                          className="w-full text-xs p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500"
+                          className="w-full text-xs p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 text-slate-900"
                         />
                       </div>
                       <div className="sm:col-span-2">
@@ -370,7 +370,7 @@ export default function RequestDetailModal({
                             setFormData({ ...formData, reason: e.target.value })
                           }
                           required
-                          className="w-full text-xs p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500"
+                          className="w-full text-xs p-2 bg-white border border-slate-300 rounded focus:ring-2 focus:ring-indigo-500 text-slate-900"
                         >
                           {Object.entries(RETURN_REASONS).map(([key, config]) => (
                             <option key={key} value={key}>

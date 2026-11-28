@@ -117,7 +117,7 @@ export default function NoteTimeline({ notes = [], onAddNote, isSubmitting = fal
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Type an internal note or customer interaction record (cannot be edited or deleted once posted)..."
-          className="w-full text-sm p-3 bg-white border border-slate-200 rounded-lg placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-y min-h-[72px]"
+          className="w-full text-sm p-3 bg-white border border-slate-200 rounded-lg placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition resize-y min-h-[72px] text-slate-900"
           required
         />
 

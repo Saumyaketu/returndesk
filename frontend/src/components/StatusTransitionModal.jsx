@@ -288,7 +288,7 @@ export default function StatusTransitionModal({
                           value={refundAmount}
                           onChange={(e) => setRefundAmount(e.target.value)}
                           required
-                          className="w-full pl-7 pr-3 py-2 text-sm bg-white border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-hidden"
+                          className="w-full pl-7 pr-3 py-2 text-sm bg-white border border-emerald-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-hidden text-slate-900"
                         />
                       </div>
                       <p className="text-[11px] text-emerald-800">
@@ -313,7 +313,7 @@ export default function StatusTransitionModal({
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="Record why this status change was authorized (e.g., QC inspection passed)..."
-                  className="w-full text-xs p-3 bg-white border border-slate-200 rounded-lg placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500"
+                  className="w-full text-xs p-3 bg-white border border-slate-200 rounded-lg placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 text-slate-900"
                 />
               </div>
             </>
