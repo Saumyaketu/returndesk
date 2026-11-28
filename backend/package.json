@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
-    "test": "node tests/businessRules.test.js && node tests/apiRoutes.test.js && node tests/seedCompliance.test.js",
+    "test": "node tests/businessRules.test.js && node tests/apiRoutes.test.js && node tests/seedCompliance.test.js && node tests/e2eRules.test.js",
+    "test:unit": "node tests/businessRules.test.js",
+    "test:e2e": "node tests/e2eRules.test.js",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
