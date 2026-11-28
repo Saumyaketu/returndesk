@@ -9,8 +9,20 @@ const { NotFoundError } = require('./lib/errors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Enable CORS and JSON body parser
-app.use(cors());
+// CORS configuration driven purely by environment variable CORS_ORIGIN
+const corsOrigin = process.env.CORS_ORIGIN || '*';
+const corsOptions = {
+  origin: corsOrigin.includes(',')
+    ? corsOrigin.split(',').map((o) => o.trim())
+    : corsOrigin,
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With'],
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 // Health check endpoint

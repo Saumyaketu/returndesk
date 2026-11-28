@@ -32,7 +32,7 @@ async function request(endpoint, options = {}) {
     response = await fetch(url, config);
   } catch (err) {
     throw new ApiError(
-      'Unable to connect to ReturnDesk backend service. Please verify the backend is running on port 5000.',
+      'Unable to connect to ReturnDesk backend service. Please verify your backend API URL in .env and check that the service is running.',
       0,
       'NETWORK_DISCONNECTED'
     );
