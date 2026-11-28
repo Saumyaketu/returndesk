@@ -3,9 +3,12 @@
  * 
  * Enforces requirement:
  * "When the server refuses an action, the user must be told why. Errors must not be swallowed."
+ * 
+ * Uses relative '/api' endpoint proxied server-side via Next.js rewrites using private API_URL.
+ * Keeps backend URLs private without exposing public framework prefixes (NEXT_PUBLIC_).
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = '/api';
 
 export class ApiError extends Error {
   constructor(message, statusCode = 500, code = 'API_ERROR', details = null) {
