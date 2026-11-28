@@ -1,5 +1,8 @@
 # ReturnDesk
 
+> 🌐 **Live Application**: [https://returndesk-taupe.vercel.app](https://returndesk-taupe.vercel.app)  
+> ⏱️ **Time Spent**: ~10 hours
+
 Returns operations desk for customer support agents to process returns, track resolutions, and manage audit notes.
 
 ---
